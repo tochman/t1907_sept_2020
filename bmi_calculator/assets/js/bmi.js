@@ -6,20 +6,43 @@ const BMICalculator = {
       display: this.checkResult(result)
     }
   },
-  checkResult(bmiValue) {
-      if (bmiValue <= 18.5) {
-      display.message = 'underweight'
-      display.color = 'red'
-    } else if (bmiValue >= 18.6 && bmiValue <= 24.9) {
-      display.message = 'normal'
-      display.color = 'green'
-    } else if (bmiValue >= 25 && bmiValue <= 29.9) {
-      display.message = 'overweight'
-      display.color = 'darkgreen'
-    } else if (bmiValue >= 30) {
-      display.message = 'obese'
-      display.color = 'red'
+  calculateImperial(weight, height) {
+    let result = (parseInt(weight) * 703) / (parseInt(height) * parseInt(height))
+    return {
+      value: result,
+      display: this.checkResult(result)
     }
-    return display
+  },
+  checkResult(bmiValue) {
+    switch (true) {
+      case (bmiValue <= 18.5):
+        return (
+          {
+            message: 'underweight',
+            color: 'red'
+          }
+        )
+      case (bmiValue < 25):
+        return (
+          {
+            message: 'normal',
+            color: 'green'
+          }
+        )
+      case (bmiValue < 30):
+        return (
+          {
+            message: 'overweight',
+            color: 'darkgreen'
+          }
+        )
+      case (bmiValue < 35):
+        return (
+          {
+            message: 'obese',
+            color: 'red'
+          }
+        )
+    }
   }
 }
