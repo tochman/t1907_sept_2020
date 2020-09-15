@@ -1,6 +1,14 @@
 const apiUrl = 'https://reqres.in/api/users'
 const proxyUrl = 'https://cors-anywhere.herokuapp.com'
 const usersDisplayNode = document.getElementById('users')
+const header = document.getElementById('header');
+
+
+
+// Start observing the target node for configured mutations
+observer.observe(header, {attributes: true, attributeOldValue: true});
+observer.observe(usersDisplayNode, config);
+
 
 const fetchUsers = async (page) => {
   let data = await (await fetch(apiUrl + `?page=${page}&per_page=3`)).json()
@@ -18,8 +26,8 @@ const fetchPage = page => {
 const dispalyNavigation = response => {
   let { page, total_pages } = response
   let buttonsDisplay = document.createElement('div')
-  let prevLink = page > total_pages/total_pages ? `<button onclick="fetchPage(${page - 1})"><<</button>` : ''
-  let nextLink = page < total_pages ? `<button onclick="fetchPage(${page + 1})">>></button>` : ''
+  let prevLink = page > total_pages / total_pages ? `<button onclick="fetchPage(${(page - 1)})"><<</button>` : ''
+  let nextLink = page < total_pages ? `<button onclick="fetchPage(${(page + 1)})">>></button>` : ''
   buttonsDisplay.innerHTML = prevLink + nextLink
   usersDisplayNode.appendChild(buttonsDisplay)
 }

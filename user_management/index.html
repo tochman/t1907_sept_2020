@@ -9,9 +9,16 @@
 </head>
 
 <body>
-  <h1>All users</h1>
+  <h1 onclick="handleClick()" id="header" style="color: green; ">All users</h1>
   <div id="users"></div>
+  <script src="./assets/js/observer.js"></script>
   <script src="./assets/js/app.js"></script>
+  <script>
+    const handleClick = () => {
+      header.innerText = "You clicked me"
+      header.setAttribute("style", "color: red; font-size: 44px");
+    }
+  </script>
 </body>
 
 </html>
